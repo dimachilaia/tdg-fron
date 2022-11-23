@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import useStore from "../store";
-import { Button,ModalBody} from "reactstrap";
+import { Button, ModalBody } from "reactstrap";
 
 const EditPerson = ({
   setChange,
@@ -16,7 +16,7 @@ const EditPerson = ({
   phone,
   setPhone,
   id,
-  name, 
+  name,
 }) => {
   const updatePerson = useStore((state) => state.updatePerson);
 
@@ -82,6 +82,7 @@ const EditPerson = ({
               onChange={(e) => setPhone(e.target.value)}
             />
             <Button
+              style={{ fontSize: "14px" }}
               onClick={() =>
                 handleEdit({
                   name,
@@ -96,6 +97,12 @@ const EditPerson = ({
             >
               Edit
             </Button>
+            <Button
+              style={{ fontSize: "14px", marginLeft: "180px" }}
+              onClick={() => setChange(false)}
+            >
+              Cancel
+            </Button>
           </FormGroup>
         </ModalBody>
       </ChangeModal>
@@ -107,8 +114,8 @@ export default EditPerson;
 
 const ChangeModal = styled.div`
   position: absolute;
-  width: 50%;
-  height: 400px;
+  width: 36%;
+  height: 500px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

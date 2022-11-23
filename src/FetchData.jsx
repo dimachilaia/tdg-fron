@@ -5,6 +5,7 @@ import Loading from "./Loading/Loading";
 import DataTable from "react-data-table-component";
 import ModalComponent from "./Modal/ModalComponent";
 import EditPerson from "./Edit/EditPerson";
+import PieRechartComponent from "./chart/Chart";
 
 const FetchData = () => {
   const data = useStore((state) => state.data);
@@ -13,9 +14,9 @@ const FetchData = () => {
   const fetchData = useStore((state) => state.fetch);
   const removeStudent = useStore((state) => state.removePerson);
   const addPerson = useStore((state) => state.addPerson);
+
   const [change, setChange] = useState(false);
   const [modal, setModal] = useState(false);
-
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [street, setStreet] = useState("");
@@ -110,6 +111,7 @@ const FetchData = () => {
         setModal={setModal}
         handleModalClose={handleModalClose}
       />
+      <PieRechartComponent/>
       {
         <DataTable
           onRowDoubleClicked={(row) => doubleClickHandler(row)}

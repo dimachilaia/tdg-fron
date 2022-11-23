@@ -1,8 +1,11 @@
 import FetchData from "./FetchData";
 
+
 function App() {
   return (
-      <FetchData/>
+    <div>
+      <FetchData />
+    </div>
   );
 }
 

@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import styled from "styled-components";
 import { useState } from "react";
 
-const ModalComponent = ({ modal, setModal, addStudent, handleModalClose }) => {
+const ModalComponent = ({ modal, setModal, handleModalClose }) => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [street, setStreet] = useState("");
@@ -23,6 +23,12 @@ const ModalComponent = ({ modal, setModal, addStudent, handleModalClose }) => {
       gender,
     });
     setModal(!modal);
+    setEmail('')
+    setName('')
+    setStreet('')
+    setCity('')
+    setPhone('')
+    setGender('')
   };
   return (
     <MainComponent>
@@ -35,12 +41,14 @@ const ModalComponent = ({ modal, setModal, addStudent, handleModalClose }) => {
         <StyledModalBody>
           <FormGroup>
             <Input
+              required
               id="label"
               value={name}
               placeholder="Enter Your Name"
               onChange={(e) => setName(e.target.value)}
             />
             <Input
+              required
               id="label"
               value={email}
               placeholder="Enter Your Email"
@@ -64,6 +72,7 @@ const ModalComponent = ({ modal, setModal, addStudent, handleModalClose }) => {
               onChange={(e) => setStreet(e.target.value)}
             />
             <Input
+            required
               id="label"
               value={city}
               placeholder="Enter Your City Address"
@@ -101,6 +110,11 @@ const MainComponent = styled.div``;
 
 const ButtonComponent = styled(Button)`
   width: 55%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
 `;
 const StyledModalBody = styled(ModalBody)``;
 
