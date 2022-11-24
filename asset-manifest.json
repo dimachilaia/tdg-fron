@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/tdg-front/static/css/main.42fc6739.css",
+    "main.js": "/tdg-front/static/js/main.a3449520.js",
+    "index.html": "/tdg-front/index.html",
+    "main.42fc6739.css.map": "/tdg-front/static/css/main.42fc6739.css.map",
+    "main.a3449520.js.map": "/tdg-front/static/js/main.a3449520.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.42fc6739.css",
+    "static/js/main.a3449520.js"
+  ]
+}
