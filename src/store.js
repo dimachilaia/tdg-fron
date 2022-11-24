@@ -9,7 +9,7 @@ const useStore = create((set) => ({
   fetch: async () => {
     set(() => ({ loading: true }));
     try {
-      const response = await axios.get("http://localhost:3001");
+      const response = await axios.get("https://tdg-backend.herokuapp.com/");
       set({ data: await response.data, loading: false });
     } catch (error) {
       console.log(error);

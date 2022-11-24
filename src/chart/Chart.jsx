@@ -1,21 +1,46 @@
-import React, { useState } from "react";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 
 const PieRechartComponent = ({ fetchdata }) => {
-  // const [chosenSegmentType, setChosenSegmentType] = useState();
-  // const [chosenSegmentDescription, setChosenSegmentDescription] = useState();
-
   const filteredCity = fetchdata.map((item) => item.address.city);
   const norepeatCities = [...new Set(filteredCity)];
-  console.log(norepeatCities);
 
-  const COLORS = ["#8884d8", "#82ca9d", "#FFBB28", "#FF8042", "#AF19FF"];
-  const pieData = norepeatCities.map((city) => {
-    return {
+  let data = [];
+
+  norepeatCities.forEach((city) => {
+    data.push({
       name: city,
-      value: 25,
-    };
+      value: 0,
+    });
   });
+
+  fetchdata.forEach((item) => {
+    data.forEach((dataItem, index) => {
+      if (item.address.city === dataItem.name) {
+        data.splice(index, 1, {
+          name: dataItem.name,
+          value: dataItem.value + 1,
+        });
+      }
+    });
+  });
+
+  console.log(data);
+
+  const COLORS = [
+    "#8884d8",
+    "#82ca9d",
+    "#FFBB28",
+    "#FF8042",
+    "#AF19FF",
+    "#E94649",
+    "#F6B53F",
+    "#6FAAB0",
+    "#C4C24A",
+    "#FFE35B",
+    "#1E4629",
+    "#FFE35B",
+  ];
+
   const CustomTooltip = ({ active, payload }) => {
     if (active) {
       return (
@@ -38,7 +63,7 @@ const PieRechartComponent = ({ fetchdata }) => {
     <>
       <PieChart width={730} height={300}>
         <Pie
-          data={pieData}
+          data={data}
           color="#000000"
           dataKey="value"
           nameKey="name"
@@ -54,9 +79,6 @@ const PieRechartComponent = ({ fetchdata }) => {
         <Tooltip content={<CustomTooltip />} />
         <Legend />
       </PieChart>
-      <div>
-        <div style={{ display: "flex" }}>{norepeatCities}</div>
-      </div>
     </>
   );
 };
