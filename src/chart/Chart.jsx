@@ -1,31 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 
-class PieRechartComponent extends React.Component {
-  COLORS = ["#8884d8", "#82ca9d", "#FFBB28", "#FF8042", "#AF19FF"];
-  pieData = [
-    {
-      name: "Apple",
-      value: 54.85,
-    },
-    {
-      name: "Samsung",
-      value: 47.91,
-    },
-    {
-      name: "Redmi",
-      value: 16.85,
-    },
-    {
-      name: "One Plus",
-      value: 16.14,
-    },
-    {
-      name: "Others",
-      value: 10.25,
-    },
-  ];
-  CustomTooltip = ({ active, payload }) => {
+const PieRechartComponent = ({ fetchdata }) => {
+  // const [chosenSegmentType, setChosenSegmentType] = useState();
+  // const [chosenSegmentDescription, setChosenSegmentDescription] = useState();
+
+  const filteredCity = fetchdata.map((item) => item.address.city);
+  const norepeatCities = [...new Set(filteredCity)];
+  console.log(norepeatCities);
+
+  const COLORS = ["#8884d8", "#82ca9d", "#FFBB28", "#FF8042", "#AF19FF"];
+  const pieData = norepeatCities.map((city) => {
+    return {
+      name: city,
+      value: 25,
+    };
+  });
+  const CustomTooltip = ({ active, payload }) => {
     if (active) {
       return (
         <div
@@ -42,11 +33,12 @@ class PieRechartComponent extends React.Component {
     }
     return null;
   };
-  render() {
-    return (
+
+  return (
+    <>
       <PieChart width={730} height={300}>
         <Pie
-          data={this.pieData}
+          data={pieData}
           color="#000000"
           dataKey="value"
           nameKey="name"
@@ -55,17 +47,17 @@ class PieRechartComponent extends React.Component {
           outerRadius={120}
           fill="#8884d8"
         >
-          {this.pieData.map((entry, index) => (
-            <Cell
-              key={`cell-${index}`}
-              fill={this.COLORS[index % this.COLORS.length]}
-            />
+          {fetchdata.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>
-        <Tooltip content={<this.CustomTooltip />} />
+        <Tooltip content={<CustomTooltip />} />
         <Legend />
       </PieChart>
-    );
-  }
-}
+      <div>
+        <div style={{ display: "flex" }}>{norepeatCities}</div>
+      </div>
+    </>
+  );
+};
 export default PieRechartComponent;

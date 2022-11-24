@@ -111,7 +111,7 @@ const FetchData = () => {
         setModal={setModal}
         handleModalClose={handleModalClose}
       />
-      <PieRechartComponent/>
+      <PieRechartComponent fetchdata={data} city={city}/>
       {
         <DataTable
           onRowDoubleClicked={(row) => doubleClickHandler(row)}

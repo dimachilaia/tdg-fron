@@ -1,5 +1,6 @@
 import create from "zustand";
 import axios from "axios";
+
 const useStore = create((set) => ({
   data: [],
   loading: false,
@@ -39,8 +40,8 @@ const useStore = create((set) => ({
     set((state) => ({
       data: state.data.map((item) => {
         if (item.id === person.id) {
-          console.log(item.id, person.id)
-          console.log(item, person)
+          // console.log(item.id, person.id);
+          // console.log(item, person);
           return {
             name: person.name,
             id: person.id,
